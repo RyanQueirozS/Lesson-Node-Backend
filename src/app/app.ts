@@ -2,7 +2,7 @@ import express, { Express, Request, Response } from 'express'
 
 const port = 8888
 
-class App {
+export class App {
     private static instance: App | null = null;
     private app: Express;
 
@@ -31,6 +31,3 @@ class App {
         })
     }
 }
-
-const app = App.getInstance();
-app.run();

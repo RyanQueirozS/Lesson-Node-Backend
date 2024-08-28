@@ -1,14 +1,14 @@
-FROM  node:18-alpine
+FROM node:18-alpine
 
 WORKDIR /home/node/app
 
-COPY ./server/package.json ./server/package-lock.json ./server/
+COPY package*.json .
 
-RUN npm ci --prefix ./server
-RUN chown -R node:node /home/node/app
+RUN ls
+RUN npm ci 
 
 COPY . .
 
 EXPOSE 8888
 
-CMD ["npm", "run", "--prefix", "./server", "dev"]
+CMD ["npm", "run", "dev"]
