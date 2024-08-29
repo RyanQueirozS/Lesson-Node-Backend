@@ -1,4 +1,4 @@
-import express, { Express, Request, Response } from 'express'
+import express, { Express, Router } from 'express'
 
 const port = 8888
 
@@ -24,10 +24,11 @@ export class App {
         })
     }
 
-    init(): void {
-        this.app.get('/', (req: Request, res: Response) => {
-            void (req);
-            res.send('Hello from root')
-        })
+    private init(): void {
+        this.app.use(express.json());
+    }
+
+    addRoute(route: string, router: Router): void {
+        this.app.use(route, router);
     }
 }

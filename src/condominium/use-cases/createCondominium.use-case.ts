@@ -1,5 +1,10 @@
-import { CondominiumUseCase } from './condominium.use-case';
+import { CondominiumModel } from '../condominium.model';
+import { CondominiumRepository } from '../condominium.repository';
 
-class CreateCondominiumUseCase implements CondominiumUseCase {
-    async execute(req: Request, res: Response): Promise<void> { }
+export class CreateCondominiumUseCase {
+    constructor(private condominiumRepository: CondominiumRepository) { }
+
+    async execute(condominium: CondominiumModel): Promise<void> {
+        this.condominiumRepository.save(condominium);
+    }
 }

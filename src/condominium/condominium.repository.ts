@@ -1,14 +1,14 @@
 import { CondominiumModel } from "./condominium.model";
 
-interface CondominiumRepository {
+export interface CondominiumRepository {
     save(condominium: CondominiumModel): Promise<void>;
-    getByID(id: string): Promise<CondominiumModel | null>;
 }
 
 export class CondominiumInMemoryRepository implements CondominiumRepository {
     private condominiums: Map<string, CondominiumModel> = new Map();
 
-    async save(condominium: CondominiumModel): Promise<void> { }
-
-    async getByID(id: string): Promise<CondominiumModel | null> { }
+    async save(condominium: CondominiumModel): Promise<void> {
+        if (condominium == null) console.log('oi')
+        this.condominiums.set(condominium.getID, condominium);
+    }
 }
