@@ -11,13 +11,13 @@ export class CondominiumRouter {
 
     private InitRoutes() {
         this.router.get('/', (req: Request, res: Response) => {
-            void (req);
-            res.send('Hello from cond')
+            this.condominiumController.getAll(req, res);
         });
         this.router.post('/', (req: Request, res: Response) => {
-            this.condominiumController.createCondominium(req, res)
+            this.condominiumController.create(req, res)
         })
     }
+
     public getRouter(): Router {
         return this.router;
     }
