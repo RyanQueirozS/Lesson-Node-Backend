@@ -1,10 +1,4 @@
-export interface ICondominiumModel {
-    id: string;
-    cnpj: string;
-    name: string;
-    address: string;
-    logoPath: string;
-}
+import { ICondominiumParams } from "./interfaces/icondominium-params";
 
 export class CondominiumModel {
     private _id: string;
@@ -13,7 +7,17 @@ export class CondominiumModel {
     private _address: string;
     private _logoPath: string;
 
-    constructor(props: ICondominiumModel) {
+    constructor(props: ICondominiumParams) {
+        if (
+            !props.id ||
+            !props.cnpj ||
+            !props.name ||
+            !props.address ||
+            !props.logoPath
+        ) {
+            return null;
+        }
+
         this._id = props.id;
         this._cnpj = props.cnpj;
         this._name = props.name;
@@ -21,9 +25,19 @@ export class CondominiumModel {
         this._logoPath = props.logoPath;
     }
 
-    get getID() { return this._id; }
-    get getCNPJ() { return this._cnpj; }
-    get getName() { return this._name; }
-    get getAddress() { return this._address; }
-    get getLogoPath() { return this._logoPath; }
+    get getID() {
+        return this._id;
+    }
+    get getCNPJ() {
+        return this._cnpj;
+    }
+    get getName() {
+        return this._name;
+    }
+    get getAddress() {
+        return this._address;
+    }
+    get getLogoPath() {
+        return this._logoPath;
+    }
 }
