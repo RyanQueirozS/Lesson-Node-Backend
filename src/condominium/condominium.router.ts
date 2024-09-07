@@ -1,4 +1,4 @@
-import { Request, Response, Router } from 'express'
+import { Request, Response, Router } from "express";
 import { CondominiumController } from "./condominium.controller";
 
 export class CondominiumRouter {
@@ -10,12 +10,18 @@ export class CondominiumRouter {
     }
 
     private InitRoutes() {
-        this.router.get('/', (req: Request, res: Response) => {
+        this.router.get("/", (req: Request, res: Response) => {
             this.condominiumController.getAll(req, res);
         });
-        this.router.post('/', (req: Request, res: Response) => {
-            this.condominiumController.create(req, res)
-        })
+        this.router.get("/:id", (req: Request, res: Response) => {
+            this.condominiumController.getOne(req, res);
+        });
+        this.router.post("/", (req: Request, res: Response) => {
+            this.condominiumController.create(req, res);
+        });
+        this.router.put("/", (req: Request, res: Response) => {
+            this.condominiumController.update(req, res);
+        });
     }
 
     public getRouter(): Router {

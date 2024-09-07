@@ -22,6 +22,7 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql/data
     ports:
+<<<<<<< HEAD
       - "5440:5432"
 
   test-runner:
@@ -39,6 +40,9 @@ services:
         DATABASE_URL: postgres://postgres:password@db:5432/mydatabase
       command: npm run test
       tty: true  # Esto permite que el contenedor siga corriendo
+=======
+      - "5431:5432"
+>>>>>>> 6d54dd0d702f0cfbf370bf3d599345bf46646c86
 
 volumes:
   postgres-data:
