@@ -1,8 +1,8 @@
 import { CondominiumModel } from "../condominium.model";
-import { CondominiumRepository } from "../condominium.repository";
+import { ICondominiumRepository } from "../condominium.repository";
 
 export class GetAllCondominiumsUseCase {
-    constructor(private condominiumRepository: CondominiumRepository) { }
+    constructor(private condominiumRepository: ICondominiumRepository) { }
 
     async execute(): Promise<Array<CondominiumModel>> {
         return this.condominiumRepository.getAll();

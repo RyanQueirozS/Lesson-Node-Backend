@@ -3,12 +3,12 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: web-container 
+    container_name: web-container
     ports:
       - "8888:8888"
     volumes:
-      - .:/home/node/app 
-      - /home/node/app/node_modules 
+      - .:/home/node/app
+      - /home/node/app/node_modules
     depends_on:
       - db
 
@@ -22,7 +22,23 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - "5440:5432"
+
+  test-runner:
+      build:
+        context: .
+        dockerfile: Dockerfile
+      container_name: test-container
+      volumes:
+        - .:/home/node/app
+        - /home/node/app/node_modules
+      depends_on:
+        - db
+      environment:
+        NODE_ENV: test
+        DATABASE_URL: postgres://postgres:password@db:5432/mydatabase
+      command: npm run test
+      tty: true  # Esto permite que el contenedor siga corriendo
 
 volumes:
   postgres-data:
