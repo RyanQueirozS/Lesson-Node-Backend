@@ -16,31 +16,9 @@ export class CondominiumInMemoryRepository implements ICondominiumRepository {
     return this.instance
   }
 
-  async save(condominiumParams: ICondominiumParams): Promise<CondominiumModel> {
-    let newID = 0
-    // TODO generate more unique ids
-    // it's now generating the highest found id + 1
-    {
-      let highestID = 0
-      this.condominiums.forEach((_: CondominiumModel, condID: string) => {
-        if (highestID <= Number(condID)) highestID = Number(condID) + 1
-      })
-      newID = highestID
-    }
-
-    condominiumParams.id = newID.toString()
-    let newCondominium = new CondominiumModel(
-      condominiumParams,
-      new CondominiumModelValidatorService(),
-      this,
-      { isBeingCreated: true }
-    )
-    if (condominiumParams != null) {
-      this.condominiums.set(newID.toString(), newCondominium)
-      return newCondominium
-    }
-
-    return null!
+  async create(condominium: CondominiumModel): Promise<CondominiumModel> {
+    this.condominiums.set(condominium.id!, condominium)
+    return condominium
   }
 
   async getAll(): Promise<Array<CondominiumModel>> {

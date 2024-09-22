@@ -1,10 +1,12 @@
-import express, { Express, Router } from 'express'
+import { condRouter } from '@src/condominium'
+import express, { Express } from 'express'
+import {errorHandler} from './error-handler'
 
 const port = 8888
 
 export class App {
   private static instance: App | null = null
-  private app: Express
+  public app: Express
 
   private constructor() {
     this.app = express()
@@ -26,9 +28,11 @@ export class App {
 
   private init(): void {
     this.app.use(express.json())
+    this.routes()
   }
 
-  addRoute(route: string, router: Router): void {
-    this.app.use(route, router)
+  routes() {
+    this.app.use('/condominiums', condRouter.getRouter())
+    this.app.use(errorHandler)
   }
 }

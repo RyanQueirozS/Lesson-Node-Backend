@@ -10,7 +10,6 @@ export abstract class ErrorHandler extends Error {
   }
 
   public messageToClient(res: Response): Response {
-    if (this.error.message)
       return res.status(this.statusCode).json({ error: this.error.message })
   }
 

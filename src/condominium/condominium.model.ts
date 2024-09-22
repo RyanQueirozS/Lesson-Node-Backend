@@ -1,4 +1,4 @@
-import { BaseModel, IBaseModelParameters } from '@src/shared/models/base.model'
+import { BaseModel } from '@src/shared/models/base.model'
 import { throwInvalidParamError } from '@src/shared/utils/helpers'
 import { CondominiumDto } from './protocols/condominium.dto'
 import { ICondominiumRepository } from './interfaces/icondominium-repository'
@@ -60,15 +60,4 @@ export class CondominiumModel extends BaseModel {
       throwInvalidParamError(this.notification.getErrors())
     }
   }
-
-  // TODO move to validator service
-  // checkIFCnpjExists(): void {
-  //   const condominium = this.condominiumRepository.getOne({ cnpj: this.cnpj })
-
-  //   if (condominium) {
-  //     this.notification.addError({
-  //       message: 'CNPJ already exists',
-  //       context: 'condominium'
-  //     })
-  //   }
 }

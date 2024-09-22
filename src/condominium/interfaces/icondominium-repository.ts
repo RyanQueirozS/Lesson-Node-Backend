@@ -2,7 +2,7 @@ import { CondominiumModel } from '../condominium.model'
 import { ICondominiumParams } from './icondominium-params'
 
 export interface ICondominiumRepository {
-  save(condominium: ICondominiumParams): Promise<CondominiumModel>
+  create(condominium: ICondominiumParams): Promise<CondominiumModel>
   getAll(): Promise<Array<CondominiumModel>>
   getOne(id: string): Promise<CondominiumModel | null>
   update(

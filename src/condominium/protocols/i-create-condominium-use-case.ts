@@ -1,5 +1,7 @@
-import { ICondominiumParameters, CondomiminumModel } from '..'
+import { ICondominiumParams } from '../interfaces/icondominium-params';
+import { CondominiumModel } from '../condominium.model';
 
-export interface ICreateBrandUseCase {
-  execute(brand: ICondominiumParameters): Promise<CondomiminumModel>
+
+export interface ICreateCondominiumUseCase {
+  execute(brand: ICondominiumParams): Promise<CondominiumModel>
 }

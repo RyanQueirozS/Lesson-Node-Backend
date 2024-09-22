@@ -13,7 +13,7 @@ export class CondominiumModelValidatorService
     try {
       const schema = yup.object().shape({
         name: yup.string().min(3).max(30).required('name is required'),
-        cnjp: yup.string().min(14).max(14).required('cnpj is required'),
+        cnpj: yup.string().min(14).max(14).required('cnpj is required'),
         address: yup.string().min(3).max(30).required('address is required'),
         logoPath: yup.string().min(3).max(30).nullable().notRequired(),
         ...this.optionalProperties(options.isBeingCreated)
@@ -22,12 +22,11 @@ export class CondominiumModelValidatorService
       schema.validateSync(condominium, { abortEarly: false })
     } catch (errors) {
       const e = errors as yup.ValidationError
-      e.errors.forEach((error: string) => {
-        // errors is an array of error messages(Array<string>)
-        // check: https://github.com/jquense/yup?tab=readme-ov-file#validationerrorerrors-string--arraystring-value-any-path-string
+      e.inner.forEach((error) => {
         condominium.notification.addError({
-          message: error,
-          context: 'condominium'
+          message: error.message,
+          context: 'condominium',
+          field: error.path
         })
       })
     }
