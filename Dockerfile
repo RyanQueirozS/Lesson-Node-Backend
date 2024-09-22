@@ -4,8 +4,7 @@ WORKDIR /home/node/app
 
 COPY package*.json .
 
-RUN ls
-RUN npm ci 
+RUN npm ci  # Install dependencies
 
 COPY . .
 

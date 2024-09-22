@@ -1,2 +1,2 @@
-export * from './base.validator.service';
-export * from './condominium.validator.service';
+export * from './base.validator.service'
+export * from './condominium.validator.service'

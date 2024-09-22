@@ -2,13 +2,17 @@
   "compilerOptions": {
     "lib": ["es2019", "dom"],
     "module": "commonjs",
-    "noImplicitAny": true,
     "removeComments": true,
     "preserveConstEnums": true,
     "outDir": "dist",
     "sourceMap": true,
-    "esModuleInterop": true, // Add this line
-    "allowSyntheticDefaultImports": true, // Optional but often useful with esModuleInterop
+    "esModuleInterop": true,
+
+    "noEmitOnError": true, // Breaks compilation if there is an error in a ts file
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+
     "baseUrl": ".",
     "paths": {
       "@tests/*": ["__tests__/*"],
@@ -18,7 +22,6 @@
   "include": ["src/**/*", "__tests__/**/*.ts"],
   "exclude": ["node_modules"],
   "ts-node": {
-    "transpileOnly": true,
     "files": true
   }
 }

@@ -1,7 +1,7 @@
-import { App } from "./app/app";
+import { App } from './app/app'
 
-import { condRouter } from "./condominium";
+import { condRouter } from './condominium'
 
-App.getInstance().addRoute('/condominium', condRouter.getRouter());
+App.getInstance().addRoute('/condominium', condRouter.getRouter())
 
-App.getInstance().run();
+App.getInstance().run()

@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/48</span>
+                <span class='fraction'>0/74</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/48</span>
+                <span class='fraction'>0/74</span>
             </div>
         
             
@@ -111,7 +111,33 @@
 <a name='L46'></a><a href='#L46'>46</a>
 <a name='L47'></a><a href='#L47'>47</a>
 <a name='L48'></a><a href='#L48'>48</a>
-<a name='L49'></a><a href='#L49'>49</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -159,53 +185,105 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >export interface ICondominiumModel {</span></span></span>
-<span class="cstat-no" title="statement not covered" >  id: string;</span>
-<span class="cstat-no" title="statement not covered" >  cnpj: string;</span>
-<span class="cstat-no" title="statement not covered" >  name: string;</span>
-<span class="cstat-no" title="statement not covered" >  address: string;</span>
-<span class="cstat-no" title="statement not covered" >  logoPath: string;</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import { BaseModel, IBaseModelParameters } from '@src/shared/models/base.model'</span></span></span>
+<span class="cstat-no" title="statement not covered" >import { throwInvalidParamError } from '@src/shared/utils/helpers'</span>
+<span class="cstat-no" title="statement not covered" >import { CondominiumDto } from './protocols/condominium.dto'</span>
+<span class="cstat-no" title="statement not covered" >import { ICondominiumRepository } from './interfaces/icondominium-repository'</span>
+<span class="cstat-no" title="statement not covered" >import { ICondominiumParams } from './interfaces/icondominium-params'</span>
+<span class="cstat-no" title="statement not covered" >import { IValidatorService } from '@src/shared/interfaces/i-validator-service'</span>
+<span class="cstat-no" title="statement not covered" >import { OptionsValidation } from '@src/shared/services/validators/protocols/options.validation'</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >export class CondominiumModel {</span>
-<span class="cstat-no" title="statement not covered" >  private _id: string;</span>
-<span class="cstat-no" title="statement not covered" >  private _cnpj: string;</span>
-<span class="cstat-no" title="statement not covered" >  private _name: string;</span>
-<span class="cstat-no" title="statement not covered" >  private _address: string;</span>
-<span class="cstat-no" title="statement not covered" >  private _logoPath: string;</span>
+<span class="cstat-no" title="statement not covered" >export class CondominiumModel extends BaseModel {</span>
+<span class="cstat-no" title="statement not covered" >  private _cnpj: string</span>
+<span class="cstat-no" title="statement not covered" >  private _name: string</span>
+<span class="cstat-no" title="statement not covered" >  private _address: string</span>
+<span class="cstat-no" title="statement not covered" >  private _logoPath: string</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  constructor(props: ICondominiumModel) {</span>
-<span class="cstat-no" title="statement not covered" >    this._id = props.id;</span>
-<span class="cstat-no" title="statement not covered" >    this._cnpj = props.cnpj;</span>
-<span class="cstat-no" title="statement not covered" >    this._name = props.name;</span>
-<span class="cstat-no" title="statement not covered" >    this._address = props.address;</span>
-<span class="cstat-no" title="statement not covered" >    this._logoPath = props.logoPath;</span>
+<span class="cstat-no" title="statement not covered" >  constructor(</span>
+<span class="cstat-no" title="statement not covered" >    props: ICondominiumParams,</span>
+<span class="cstat-no" title="statement not covered" >    private validatorService: IValidatorService&lt;CondominiumModel&gt;,</span>
+<span class="cstat-no" title="statement not covered" >    private condominiumRepository: ICondominiumRepository,</span>
+<span class="cstat-no" title="statement not covered" >    private options: OptionsValidation = { isBeingCreated: true }</span>
+<span class="cstat-no" title="statement not covered" >  ) {</span>
+<span class="cstat-no" title="statement not covered" >    super(props, options.isBeingCreated)</span>
+<span class="cstat-no" title="statement not covered" >    this._cnpj = props.cnpj</span>
+<span class="cstat-no" title="statement not covered" >    this._name = props.name</span>
+<span class="cstat-no" title="statement not covered" >    this._address = props.address</span>
+<span class="cstat-no" title="statement not covered" >    this._logoPath = props.logoPath</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    this.validateParams();</span>
+<span class="cstat-no" title="statement not covered" >    this.validate()</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  validateParams(): boolean {</span>
-<span class="cstat-no" title="statement not covered" >    if (!this._id || !this._cnpj || !this._name || !this._address || !this._logoPath) {</span>
-<span class="cstat-no" title="statement not covered" >      throw new Error('erro ao criar condominio');</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
-<span class="cstat-no" title="statement not covered" >    return true;</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  get id() {</span>
-<span class="cstat-no" title="statement not covered" >    return this._id;</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
 <span class="cstat-no" title="statement not covered" >  get cnpj() {</span>
-<span class="cstat-no" title="statement not covered" >    return this._cnpj;</span>
+<span class="cstat-no" title="statement not covered" >    return this._cnpj</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
 <span class="cstat-no" title="statement not covered" >  get name() {</span>
-<span class="cstat-no" title="statement not covered" >    return this._name;</span>
+<span class="cstat-no" title="statement not covered" >    return this._name</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
 <span class="cstat-no" title="statement not covered" >  get address() {</span>
-<span class="cstat-no" title="statement not covered" >    return this._address;</span>
+<span class="cstat-no" title="statement not covered" >    return this._address</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
 <span class="cstat-no" title="statement not covered" >  get logoPath() {</span>
-<span class="cstat-no" title="statement not covered" >    return this._logoPath;</span>
+<span class="cstat-no" title="statement not covered" >    return this._logoPath</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  toDTO(): CondominiumDto {</span>
+<span class="cstat-no" title="statement not covered" >    return {</span>
+<span class="cstat-no" title="statement not covered" >      id: this.id,</span>
+<span class="cstat-no" title="statement not covered" >      name: this.name,</span>
+<span class="cstat-no" title="statement not covered" >      address: this.address,</span>
+<span class="cstat-no" title="statement not covered" >      cnpj: this.cnpj,</span>
+<span class="cstat-no" title="statement not covered" >      logoPath: this.logoPath,</span>
+<span class="cstat-no" title="statement not covered" >      createdAt: this.createdAt,</span>
+<span class="cstat-no" title="statement not covered" >      updatedAt: this.updatedAt,</span>
+<span class="cstat-no" title="statement not covered" >      isActive: this.isActive</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  private validate(): void {</span>
+<span class="cstat-no" title="statement not covered" >    this.validatorService.validate(this, this.options)</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    if (this.notification.hasErrors()) {</span>
+<span class="cstat-no" title="statement not covered" >      throwInvalidParamError(this.notification.getErrors())</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  // TODO move to validator service</span>
+<span class="cstat-no" title="statement not covered" >  // checkIFCnpjExists(): void {</span>
+<span class="cstat-no" title="statement not covered" >  //   const condominium = this.condominiumRepository.getOne({ cnpj: this.cnpj })</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  //   if (condominium) {</span>
+<span class="cstat-no" title="statement not covered" >  //     this.notification.addError({</span>
+<span class="cstat-no" title="statement not covered" >  //       message: 'CNPJ already exists',</span>
+<span class="cstat-no" title="statement not covered" >  //       context: 'condominium'</span>
+<span class="cstat-no" title="statement not covered" >  //     })</span>
+<span class="cstat-no" title="statement not covered" >  //   }</span>
 <span class="cstat-no" title="statement not covered" >}</span>
 &nbsp;</pre></td></tr></table></pre>
 
@@ -214,7 +292,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-09-06T18:42:49.112Z
+                at 2024-09-22T17:14:57.938Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
