@@ -1,10 +1,11 @@
 import { CondominiumModel } from '../condominium.model'
-import { ICondominiumRepository } from '../interfaces/icondominium-repository'
+import { ICondominiumRepository } from '../interfaces/i-condominium-repository'
+import { IGetOneCondominiumUseCase } from '../interfaces/i-get-one-condominium-use-case'
 
-export class GetOneCondominiumUseCase {
+export class GetOneCondominiumUseCase implements IGetOneCondominiumUseCase {
   constructor(private condominiumRepository: ICondominiumRepository) {}
 
-  async execute(id: string): Promise<CondominiumModel | null> {
-    return await this.condominiumRepository.getOne(id)
+  async execute(id: string) {
+    return this.condominiumRepository.getOne(id)
   }
 }

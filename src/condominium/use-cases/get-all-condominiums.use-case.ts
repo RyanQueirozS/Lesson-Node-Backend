@@ -1,7 +1,8 @@
 import { CondominiumModel } from '../condominium.model'
-import { ICondominiumRepository } from '../interfaces/icondominium-repository'
+import { IGetAllCondominiumsUseCase } from '../interfaces/i-get-all-condominiums-use-case'
+import { ICondominiumRepository } from '../interfaces/i-condominium-repository'
 
-export class GetAllCondominiumsUseCase {
+export class GetAllCondominiumsUseCase implements IGetAllCondominiumsUseCase {
   constructor(private condominiumRepository: ICondominiumRepository) {}
 
   async execute(): Promise<Array<CondominiumModel>> {

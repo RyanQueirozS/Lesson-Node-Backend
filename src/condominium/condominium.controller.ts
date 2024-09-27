@@ -1,16 +1,16 @@
 import { Request, Response } from 'express'
-import { GetAllCondominiumsUseCase } from './use-cases/get-all-condominiums.use-case'
-import { GetOneCondominiumUseCase } from './use-cases/get-one-condominium.use-case'
-import { UpdateCondominiumUseCase } from './use-cases/update-condominium.use-case'
-import { ICondominiumParams } from './interfaces/icondominium-params'
-import { ICreateCondominiumUseCase } from './protocols'
+import { ICondominiumParams } from './interfaces/i-condominium-params'
+import { ICreateCondominiumUseCase } from './interfaces/i-create-condominium-use-case'
+import { IGetAllCondominiumsUseCase } from './interfaces/i-get-all-condominiums-use-case'
+import { IGetOneCondominiumUseCase } from './interfaces/i-get-one-condominium-use-case'
+import { IUpdateCondominiumUseCase } from './interfaces/i-update-condominium-use-case'
 
 export class CondominiumController {
   constructor(
     private createCondominiumUseCase: ICreateCondominiumUseCase,
-    private getAllCondominiumsUseCase: GetAllCondominiumsUseCase,
-    private getOneCondominiumUseCase: GetOneCondominiumUseCase,
-    private updateCondominiumUseCase: UpdateCondominiumUseCase
+    private getAllCondominiumsUseCase: IGetAllCondominiumsUseCase,
+    private getOneCondominiumUseCase: IGetOneCondominiumUseCase,
+    private updateCondominiumUseCase: IUpdateCondominiumUseCase
   ) {}
 
   public async create(req: Request, res: Response): Promise<any> {

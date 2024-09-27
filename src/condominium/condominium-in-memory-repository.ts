@@ -1,7 +1,7 @@
 import { CondominiumModelValidatorService } from '@src/shared/services/validators'
 import { CondominiumModel } from './condominium.model'
-import { ICondominiumParams } from './interfaces/icondominium-params'
-import { ICondominiumRepository } from './interfaces/icondominium-repository'
+import { ICondominiumParams } from './interfaces/i-condominium-params'
+import { ICondominiumRepository } from './interfaces/i-condominium-repository'
 
 export class CondominiumInMemoryRepository implements ICondominiumRepository {
   private condominiums: Map<string, CondominiumModel> = new Map()

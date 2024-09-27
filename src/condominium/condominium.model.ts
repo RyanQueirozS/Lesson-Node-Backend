@@ -1,8 +1,8 @@
 import { BaseModel } from '@src/shared/models/base.model'
 import { throwInvalidParamError } from '@src/shared/utils/helpers'
 import { CondominiumDto } from './protocols/condominium.dto'
-import { ICondominiumRepository } from './interfaces/icondominium-repository'
-import { ICondominiumParams } from './interfaces/icondominium-params'
+import { ICondominiumRepository } from './interfaces/i-condominium-repository'
+import { ICondominiumParams } from './interfaces/i-condominium-params'
 import { IValidatorService } from '@src/shared/interfaces/i-validator-service'
 import { OptionsValidation } from '@src/shared/services/validators/protocols/options.validation'
 
