@@ -1,5 +1,6 @@
 import { CondominiumModel } from '../condominium.model'
+import { ICondominiumRepositoryFilter } from './i-condominium-repository-filter'
 
 export interface IGetOneCondominiumUseCase {
-  execute(id: string): Promise<CondominiumModel | null>
+  execute(filter: ICondominiumRepositoryFilter): Promise<CondominiumModel | null>
 }

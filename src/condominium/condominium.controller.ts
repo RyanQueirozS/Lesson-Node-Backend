@@ -4,6 +4,7 @@ import { ICreateCondominiumUseCase } from './interfaces/i-create-condominium-use
 import { IGetAllCondominiumsUseCase } from './interfaces/i-get-all-condominiums-use-case'
 import { IGetOneCondominiumUseCase } from './interfaces/i-get-one-condominium-use-case'
 import { IUpdateCondominiumUseCase } from './interfaces/i-update-condominium-use-case'
+import { ICondominiumRepositoryFilter } from './interfaces/i-condominium-repository-filter'
 
 export class CondominiumController {
   constructor(
@@ -20,12 +21,12 @@ export class CondominiumController {
   }
 
   public async getAll(req: Request, res: Response) {
-    void req
-    res.status(200).json(await this.getAllCondominiumsUseCase.execute())
+    const filter: ICondominiumRepositoryFilter = req.body
+    res.status(200).json(await this.getAllCondominiumsUseCase.execute(filter))
   }
   public async getOne(req: Request, res: Response) {
-    const { id } = req.params
-    const resp = await this.getOneCondominiumUseCase.execute(id)
+    const filter: ICondominiumRepositoryFilter = req.body
+    const resp = await this.getOneCondominiumUseCase.execute(filter)
     res.status(200).json(resp)
   }
   public async update(req: Request, res: Response) {

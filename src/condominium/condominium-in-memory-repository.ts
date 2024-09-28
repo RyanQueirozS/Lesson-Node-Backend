@@ -2,6 +2,7 @@ import { CondominiumModelValidatorService } from '@src/shared/services/validator
 import { CondominiumModel } from './condominium.model'
 import { ICondominiumParams } from './interfaces/i-condominium-params'
 import { ICondominiumRepository } from './interfaces/i-condominium-repository'
+import { ICondominiumRepositoryFilter } from './interfaces/i-condominium-repository-filter'
 
 export class CondominiumInMemoryRepository implements ICondominiumRepository {
   private condominiums: Map<string, CondominiumModel> = new Map()
@@ -10,8 +11,7 @@ export class CondominiumInMemoryRepository implements ICondominiumRepository {
 
   public static getInstance(): CondominiumInMemoryRepository {
     if (!CondominiumInMemoryRepository.instance) {
-      CondominiumInMemoryRepository.instance =
-        new CondominiumInMemoryRepository()
+      CondominiumInMemoryRepository.instance = new CondominiumInMemoryRepository()
     }
     return this.instance
   }
@@ -21,20 +21,43 @@ export class CondominiumInMemoryRepository implements ICondominiumRepository {
     return condominium
   }
 
-  async getAll(): Promise<Array<CondominiumModel>> {
-    let allCondominiums = Array<CondominiumModel>()
-    this.condominiums.forEach((condominium: CondominiumModel, _: string) => {
-      allCondominiums.push(condominium)
+  async getAll(filter: ICondominiumRepositoryFilter): Promise<Array<CondominiumModel>> {
+    const allCondominiums: Array<CondominiumModel> = []
+
+    this.condominiums.forEach((value, key) => {
+      let match = true
+
+      for (const k of Object.keys(filter) as Array<keyof ICondominiumRepositoryFilter>) {
+        if (filter[k] !== undefined && value[k] !== filter[k]) {
+          match = false
+          break
+        }
+      }
+
+      if (match) {
+        allCondominiums.push(value)
+      }
     })
+
     return allCondominiums
   }
 
-  async getOne(id: string) {
-    let condominium: CondominiumModel = null!
-    // TODO redo with a break statement and/or more readable loop/builtin find function
-    this.condominiums.forEach((cond: CondominiumModel, condID: string) => {
-      if (id == condID) {
+  async getOne(filter: ICondominiumRepositoryFilter): Promise<CondominiumModel | null> {
+    let condominium: CondominiumModel | null = null
+
+    this.condominiums.forEach((cond: CondominiumModel) => {
+      let match = true
+
+      for (const k of Object.keys(filter) as Array<keyof ICondominiumRepositoryFilter>) {
+        if (filter[k] !== undefined && cond[k] !== filter[k]) {
+          match = false
+          break
+        }
+      }
+
+      if (match) {
         condominium = cond
+        return // Returns to break the foreach
       }
     })
 
