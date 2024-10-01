@@ -23,7 +23,7 @@ export class CondominiumModelValidatorService
     } catch (errors) {
       const e = errors as yup.ValidationError
       e.inner.forEach((error) => {
-        condominium.notification.addError({
+        condominium.diagnosticService.addError({
           message: error.message,
           context: 'condominium',
           field: error.path

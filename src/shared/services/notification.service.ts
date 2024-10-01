@@ -1,23 +1,23 @@
-export type NotificationErrorProperties = {
+export type DiagnosticErrorProperties = {
   message: string
   field?: string
   context: string
 }
 
-export class NotificationService {
-  private errors: NotificationErrorProperties[]
+export class DiagnositcService {
+  private errors: DiagnosticErrorProperties[]
 
   constructor() {
     this.errors = []
   }
 
-  addError(error: NotificationErrorProperties) {
+  addError(error: DiagnosticErrorProperties) {
     this.errors.push(error)
   }
 
   getErrors(context?: string) {
     const message: any = {}
-    this.errors.forEach((error: NotificationErrorProperties) => {
+    this.errors.forEach((error: DiagnosticErrorProperties) => {
       if (error.context === context || !context) {
         if (!message.hasOwnProperty(error.context)) {
           message[error.context] = {}

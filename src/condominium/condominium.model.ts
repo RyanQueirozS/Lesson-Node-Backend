@@ -5,6 +5,7 @@ import { ICondominiumRepository } from './interfaces/i-condominium-repository'
 import { ICondominiumParams } from './interfaces/i-condominium-params'
 import { IValidatorService } from '@src/shared/interfaces/i-validator-service'
 import { OptionsValidation } from '@src/shared/services/validators/protocols/options.validation'
+import { ICondominiumRepositoryFilter } from './interfaces/i-condominium-repository-filter'
 
 export class CondominiumModel extends BaseModel {
   private _cnpj: string
@@ -56,8 +57,35 @@ export class CondominiumModel extends BaseModel {
   private validate(): void {
     this.validatorService.validate(this, this.options)
 
-    if (this.notification.hasErrors()) {
-      throwInvalidParamError(this.notification.getErrors())
+    if (this.diagnosticService.hasErrors()) {
+      throwInvalidParamError(this.diagnosticService.getErrors())
+    }
+  }
+
+  validateIfCNPJExist(): boolean {
+    return !!this.condominiumRepository.getOne({ cnpj: this.cnpj })
+  }
+  validateIfNameExist(): boolean {
+    return !!this.condominiumRepository.getOne({ name: this.name })
+  }
+
+  validateIfExists(): void {
+    if (this.validateIfCNPJExist()) {
+      this.diagnosticService.addError({
+        message: 'already exists',
+        field: 'cnpj',
+        context: 'condominium'
+      })
+    }
+    if (this.validateIfNameExist()) {
+      this.diagnosticService.addError({
+        message: 'already exists',
+        field: 'name',
+        context: 'condominium'
+      })
+    }
+    if (this.diagnosticService.hasErrors()) {
+      throwInvalidParamError(this.diagnosticService.getErrors())
     }
   }
 }

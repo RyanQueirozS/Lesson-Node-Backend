@@ -1,5 +1,5 @@
 import { randomUUID, UUID } from 'crypto'
-import { NotificationService } from '../services'
+import { DiagnositcService } from '../services'
 
 export interface BaseDto {
   id: string
@@ -22,7 +22,7 @@ export abstract class BaseModel {
   protected _updatedAt: Date
   protected _isActive: boolean
   protected _isDeleted: boolean
-  public notification: NotificationService
+  public diagnosticService: DiagnositcService
 
   constructor(entityParameters: IBaseModelParameters, isCreation: boolean) {
     this._id = isCreation ? randomUUID() : entityParameters.id!
@@ -30,7 +30,7 @@ export abstract class BaseModel {
     this._updatedAt = entityParameters.updatedAt!
     this._isActive = entityParameters.isActive!
     this._isDeleted = entityParameters.isDeleted!
-    this.notification = new NotificationService()
+    this.diagnosticService = new DiagnositcService()
   }
 
   get id() {
