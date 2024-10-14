@@ -5,7 +5,7 @@ import { ICondominiumRepository } from './interfaces/i-condominium-repository'
 import { ICondominiumParams } from './interfaces/i-condominium-params'
 import { IValidatorService } from '@src/shared/interfaces/i-validator-service'
 import { OptionsValidation } from '@src/shared/services/validators/protocols/options.validation'
-import { ICondominiumRepositoryFilter } from './interfaces/i-condominium-repository-filter'
+import { StringFormatter } from '@src/shared/utils/helpers/string-format'
 
 export class CondominiumModel extends BaseModel {
   private _cnpj: string
@@ -21,7 +21,12 @@ export class CondominiumModel extends BaseModel {
   ) {
     super(props, options.isBeingCreated)
     this._cnpj = props.cnpj
-    this._name = props.name
+    this._name = StringFormatter.modifyString(
+      props.name,
+      StringFormatter.EFormattingType.ToLower |
+        StringFormatter.EFormattingType.RemoveSQL |
+        StringFormatter.EFormattingType.RemoveWhitespace
+    )
     this._address = props.address
     this._logoPath = props.logoPath
 
@@ -58,7 +63,7 @@ export class CondominiumModel extends BaseModel {
     this.validatorService.validate(this, this.options)
 
     if (this.diagnosticService.hasErrors()) {
-      throwInvalidParamError(this.diagnosticService.getErrors())
+      throwInvalidParamError(JSON.stringify(this.diagnosticService.getErrors()))
     }
   }
 
@@ -85,7 +90,7 @@ export class CondominiumModel extends BaseModel {
       })
     }
     if (this.diagnosticService.hasErrors()) {
-      throwInvalidParamError(this.diagnosticService.getErrors())
+      throwInvalidParamError(JSON.stringify(this.diagnosticService.getErrors()))
     }
   }
 }

@@ -1,5 +1,5 @@
-import { randomUUID, UUID } from 'crypto'
-import { DiagnositcService } from '../services'
+import { randomUUID } from 'crypto'
+import { DiagnositcService } from '../services/diagnositic.service'
 
 export interface BaseDto {
   id: string
