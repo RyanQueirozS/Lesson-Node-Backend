@@ -1,22 +1,21 @@
 import {
   BadRequestErrorHandler,
   DatabaseErrorHandler,
-  EnumBadRequestType,
   NotFoundErrorHandler
 } from '../error-handlers'
 
-export function throwInvalidParamError(message: string) {
-  throw new BadRequestErrorHandler(message, EnumBadRequestType.Invalid)
+export function throwInvalidParamError(message: object) {
+  throw new BadRequestErrorHandler(message)
 }
 
-export function throwMissingParamError(message: string) {
-  throw new BadRequestErrorHandler(message, EnumBadRequestType.Missing)
+export function throwMissingParamError(message: object) {
+  throw new BadRequestErrorHandler(message)
 }
 
-export function throwNotFoundError(message: string) {
+export function throwNotFoundError(message: object) {
   throw new NotFoundErrorHandler(message)
 }
 
-export function throwDatabaseError(message: string) {
+export function throwDatabaseError(message: object) {
   throw new DatabaseErrorHandler(message)
 }

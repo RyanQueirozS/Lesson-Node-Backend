@@ -14,15 +14,15 @@ export class CondominiumRouter {
       this.condominiumController.create(req, res).catch((err) => next(err))
     })
 
-    this.router.get('/', (req: Request, res: Response) => {
-      this.condominiumController.getAll(req, res)
+    this.router.get('/', (req: Request, res: Response, next: NextFunction) => {
+      this.condominiumController.getAll(req, res).catch((err) => next(err))
     })
-    this.router.get('/:id', (req: Request, res: Response) => {
-      this.condominiumController.getOne(req, res)
+    this.router.get('/:id', (req: Request, res: Response, next: NextFunction) => {
+      this.condominiumController.getOne(req, res).catch((err) => next(err))
     })
 
-    this.router.put('/', (req: Request, res: Response) => {
-      this.condominiumController.update(req, res)
+    this.router.put('/', (req: Request, res: Response, next: NextFunction) => {
+      this.condominiumController.update(req, res).catch((err) => next(err))
     })
   }
 

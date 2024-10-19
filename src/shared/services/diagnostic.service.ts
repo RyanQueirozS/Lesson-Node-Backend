@@ -4,7 +4,7 @@ export type DiagnosticErrorProperties = {
   context: string
 }
 
-export class DiagnositcService {
+export class DiagnosticService {
   private errors: DiagnosticErrorProperties[]
 
   constructor() {

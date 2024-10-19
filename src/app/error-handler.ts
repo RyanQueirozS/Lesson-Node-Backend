@@ -1,10 +1,17 @@
-import { ErrorHandler } from '@src/shared/utils/error-handlers/ErrorHandler';
-import { NextFunction, Request, Response } from 'express';
+import { ErrorHandler } from '@src/shared/utils/error-handlers/ErrorHandler'
+import { NextFunction, Request, Response } from 'express'
 
-export const errorHandler = (error: any, req: Request, response: Response, next: NextFunction) => {
-    if(error instanceof ErrorHandler){
-        return error.messageToClient(response)
-    }
+export const errorHandler = (
+  error: unknown,
+  req: Request,
+  response: Response,
+  nextFunction: NextFunction
+) => {
+  console.log('entrando aqui')
 
-    return response.status(500).json({error: 'Internal server error'})
+  if (error instanceof ErrorHandler) {
+    return error.messageToClient(response)
+  }
+
+  return response.status(500).json({ error: 'Internal server error' })
 }

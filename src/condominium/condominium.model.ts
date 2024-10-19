@@ -21,15 +21,16 @@ export class CondominiumModel extends BaseModel {
   ) {
     super(props, options.isBeingCreated)
     this._cnpj = props.cnpj
-    this._name = StringFormatter.modifyString(
-      props.name,
-      StringFormatter.EFormattingType.ToLower |
-        StringFormatter.EFormattingType.RemoveSQL |
-        StringFormatter.EFormattingType.RemoveWhitespace
-    )
+    this._name = props.name
+      ? StringFormatter.modifyString(
+          props.name,
+          StringFormatter.EFormattingType.ToLower |
+            StringFormatter.EFormattingType.RemoveSQL |
+            StringFormatter.EFormattingType.RemoveWhitespace
+        )
+      : ''
     this._address = props.address
     this._logoPath = props.logoPath
-
     this.validate()
   }
 
@@ -61,9 +62,8 @@ export class CondominiumModel extends BaseModel {
 
   private validate(): void {
     this.validatorService.validate(this, this.options)
-
     if (this.diagnosticService.hasErrors()) {
-      throwInvalidParamError(JSON.stringify(this.diagnosticService.getErrors()))
+      throwInvalidParamError(this.diagnosticService.getErrors())
     }
   }
 
@@ -82,6 +82,7 @@ export class CondominiumModel extends BaseModel {
         context: 'condominium'
       })
     }
+
     if (this.validateIfNameExist()) {
       this.diagnosticService.addError({
         message: 'already exists',
@@ -90,7 +91,7 @@ export class CondominiumModel extends BaseModel {
       })
     }
     if (this.diagnosticService.hasErrors()) {
-      throwInvalidParamError(JSON.stringify(this.diagnosticService.getErrors()))
+      throwInvalidParamError(this.diagnosticService.getErrors())
     }
   }
 }

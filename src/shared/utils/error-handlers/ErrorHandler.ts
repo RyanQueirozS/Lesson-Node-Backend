@@ -1,19 +1,21 @@
 import { Response } from 'express'
 
-export abstract class ErrorHandler extends Error {
-  protected error!: Error
-  public statusCode: number
+export interface IErrorObject {
+  code: number // 400, 401, 403, 404, 500
+  errors: object
+}
 
-  constructor(statusCode: number, message: string) {
-    super(message)
-    this.statusCode = statusCode
-  }
+export abstract class ErrorHandler {
+  constructor(protected errorObject: IErrorObject) {}
 
   public messageToClient(res: Response): Response {
-      return res.status(this.statusCode).json({ error: this.error.message })
+    this.showOnConsole()
+    return res
+      .status(this.errorObject.code)
+      .json({ code: this.errorObject.code, error: this.errorObject.errors })
   }
 
   public showOnConsole() {
-    return this.error
+    console.error(new Date().toLocaleString() + ': ' + JSON.stringify(this.errorObject.errors))
   }
 }

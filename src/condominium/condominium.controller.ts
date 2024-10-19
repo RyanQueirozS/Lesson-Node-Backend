@@ -14,7 +14,7 @@ export class CondominiumController {
     private updateCondominiumUseCase: IUpdateCondominiumUseCase
   ) {}
 
-  public async create(req: Request, res: Response): Promise<any> {
+  public async create(req: Request, res: Response) {
     const { body } = req
     const condominium = await this.createCondominiumUseCase.execute(body)
     res.json({ data: condominium!.toDTO() })
