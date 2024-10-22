@@ -21,14 +21,12 @@ export class CondominiumModel extends BaseModel {
   ) {
     super(props, options.isBeingCreated)
     this._cnpj = props.cnpj
-    this._name = props.name
-      ? StringFormatter.modifyString(
-          props.name,
-          StringFormatter.EFormattingType.ToLower |
-            StringFormatter.EFormattingType.RemoveSQL |
-            StringFormatter.EFormattingType.RemoveWhitespace
-        )
-      : ''
+    this._name = StringFormatter.modifyString(
+      props.name,
+      StringFormatter.EFormattingType.ToLower |
+        StringFormatter.EFormattingType.RemoveSQL |
+        StringFormatter.EFormattingType.RemoveWhitespace
+    )
     this._address = props.address
     this._logoPath = props.logoPath
     this.validate()
@@ -67,15 +65,15 @@ export class CondominiumModel extends BaseModel {
     }
   }
 
-  validateIfCNPJExist(): boolean {
-    return !!this.condominiumRepository.getOne({ cnpj: this.cnpj })
+  async validateIfCNPJExist(): Promise<boolean> {
+    return !!(await this.condominiumRepository.getOne({ cnpj: this.cnpj }))
   }
-  validateIfNameExist(): boolean {
-    return !!this.condominiumRepository.getOne({ name: this.name })
+  async validateIfNameExist(): Promise<boolean> {
+    return !!(await this.condominiumRepository.getOne({ name: this.name }))
   }
 
-  validateIfExists(): void {
-    if (this.validateIfCNPJExist()) {
+  async validateIfExists(): Promise<void> {
+    if (await this.validateIfCNPJExist()) {
       this.diagnosticService.addError({
         message: 'already exists',
         field: 'cnpj',
@@ -83,7 +81,7 @@ export class CondominiumModel extends BaseModel {
       })
     }
 
-    if (this.validateIfNameExist()) {
+    if (await this.validateIfNameExist()) {
       this.diagnosticService.addError({
         message: 'already exists',
         field: 'name',

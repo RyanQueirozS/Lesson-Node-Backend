@@ -5,7 +5,7 @@ export class StringFormatter {
     ToLower: 1 << 2
   }
   public static modifyString(str: string, formattingFlags: number): string {
-    if (str == '') return str
+    if (str == '' || !str) return str
 
     let formattedStr: string = str
     if (formattingFlags & this.EFormattingType.RemoveWhitespace) {

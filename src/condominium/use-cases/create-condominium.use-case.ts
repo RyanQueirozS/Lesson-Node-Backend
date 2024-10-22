@@ -8,7 +8,12 @@ export class CreateCondominiumUseCase implements ICreateCondominiumUseCase {
 
   async execute(params: ICondominiumParams) {
     const condominium = condominiumModelFactory(params)
-    condominium.validateIfExists()
+    // try {
+    await condominium.validateIfExists()
+    // } catch {
+    //   return null
+    // }
+
     return this.condominiumRepository.create(condominium)
   }
 }

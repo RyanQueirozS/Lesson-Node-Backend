@@ -7,8 +7,6 @@ export const errorHandler = (
   response: Response,
   nextFunction: NextFunction
 ) => {
-  console.log('entrando aqui')
-
   if (error instanceof ErrorHandler) {
     return error.messageToClient(response)
   }
