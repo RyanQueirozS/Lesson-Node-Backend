@@ -9,6 +9,28 @@ export class CondominiumInMemoryRepository implements ICondominiumRepository {
   private static instance: CondominiumInMemoryRepository
   private constructor() {}
 
+  private matchesFilter(condo: CondominiumModel, filter: ICondominiumRepositoryFilter): boolean {
+    // if (!condo.isActive) return false // TODO fix
+
+    // This is a simpler approach than using keyof
+    if (filter.id && condo.id !== filter.id) return false
+    if (filter.name && !condo.name.includes(filter.name.toLowerCase())) return false
+    if (filter.cnpj && condo.cnpj !== filter.cnpj) return false
+    if (filter.address && !condo.address.includes(filter.address.toLowerCase())) return false
+
+    return true
+  }
+
+  private filterCondominiums(
+    filter: ICondominiumRepositoryFilter,
+    isExcludent: boolean
+  ): Array<CondominiumModel> {
+    return Array.from(this.condominiums.values()).filter((condo) => {
+      const matches = this.matchesFilter(condo, filter)
+      return isExcludent ? !matches : matches
+    })
+  }
+
   public static getInstance(): CondominiumInMemoryRepository {
     if (!CondominiumInMemoryRepository.instance) {
       CondominiumInMemoryRepository.instance = new CondominiumInMemoryRepository()
@@ -22,46 +44,14 @@ export class CondominiumInMemoryRepository implements ICondominiumRepository {
   }
 
   async getAll(filter: ICondominiumRepositoryFilter): Promise<Array<CondominiumModel>> {
-    const allCondominiums: Array<CondominiumModel> = []
-
-    this.condominiums.forEach((value, key) => {
-      let match = true
-
-      for (const k of Object.keys(filter) as Array<keyof ICondominiumRepositoryFilter>) {
-        if (filter[k] !== undefined && value[k] !== filter[k]) {
-          match = false
-          break
-        }
-      }
-
-      if (match) {
-        allCondominiums.push(value)
-      }
-    })
-
-    return allCondominiums
+    return this.filterCondominiums(filter, false)!
   }
 
   async getOne(filter: ICondominiumRepositoryFilter): Promise<CondominiumModel | null> {
-    let condominium: CondominiumModel | null = null
-
-    this.condominiums.forEach((cond: CondominiumModel) => {
-      let match = true
-
-      for (const k of Object.keys(filter) as Array<keyof ICondominiumRepositoryFilter>) {
-        if (filter[k] !== undefined && cond[k] !== filter[k]) {
-          match = false
-          break
-        }
-      }
-
-      if (match) {
-        condominium = cond
-        return // Returns to break the foreach
-      }
-    })
-
-    return condominium
+    return (
+      Array.from(this.condominiums.values()).find((condo) => this.matchesFilter(condo, filter)) ||
+      null
+    )
   }
 
   async update(condominiumParams: ICondominiumParams) {
@@ -77,12 +67,18 @@ export class CondominiumInMemoryRepository implements ICondominiumRepository {
     return newCond
   }
 
-  async delete(id: string): Promise<CondominiumModel | null> {
-    const cond = this.condominiums.get(id)
-    if (cond) {
-      this.condominiums.delete(id)
-      return cond
-    }
-    return null
+  async delete(filter: ICondominiumRepositoryFilter) {
+    let affectedCondominiums = 0
+
+    const condominiums = await this.getAll(filter)
+    condominiums.forEach((condominium) => {
+      condominium.deactivate()
+      affectedCondominiums++
+    })
+    return affectedCondominiums
+  }
+
+  deleteAll() {
+    this.condominiums.clear()
   }
 }

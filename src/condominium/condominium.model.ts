@@ -45,6 +45,13 @@ export class CondominiumModel extends BaseModel {
     return this._logoPath
   }
 
+  deactivate() {
+    this._isActive = false
+  }
+  activate() {
+    this._isActive = true
+  }
+
   toDTO(): CondominiumDto {
     return {
       id: this.id,
@@ -66,10 +73,7 @@ export class CondominiumModel extends BaseModel {
   }
 
   async validateIfCNPJExist(): Promise<boolean> {
-    return !!(await this.condominiumRepository.getOne({ cnpj: this.cnpj }))
-  }
-  async validateIfNameExist(): Promise<boolean> {
-    return !!(await this.condominiumRepository.getOne({ name: this.name }))
+    return !!(await this.condominiumRepository.getOne({ cnpj: this._cnpj }))
   }
 
   async validateIfExists(): Promise<void> {
@@ -81,13 +85,6 @@ export class CondominiumModel extends BaseModel {
       })
     }
 
-    if (await this.validateIfNameExist()) {
-      this.diagnosticService.addError({
-        message: 'already exists',
-        field: 'name',
-        context: 'condominium'
-      })
-    }
     if (this.diagnosticService.hasErrors()) {
       throwInvalidParamError(this.diagnosticService.getErrors())
     }

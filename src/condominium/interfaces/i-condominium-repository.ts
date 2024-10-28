@@ -6,7 +6,6 @@ export interface ICondominiumRepository {
   create(condominium: ICondominiumParams): Promise<CondominiumModel>
   getAll(filter: ICondominiumRepositoryFilter): Promise<Array<CondominiumModel>>
   getOne(filter: ICondominiumRepositoryFilter): Promise<CondominiumModel | null>
-  update(
-    condominiumParams: ICondominiumParams
-  ): Promise<CondominiumModel | null>
+  delete(filter: ICondominiumRepositoryFilter): Promise<number>
+  update(condominiumParams: ICondominiumParams): Promise<CondominiumModel | null>
 }

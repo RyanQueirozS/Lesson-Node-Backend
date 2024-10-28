@@ -24,6 +24,9 @@ export class CondominiumRouter {
     this.router.put('/', (req: Request, res: Response, next: NextFunction) => {
       this.condominiumController.update(req, res).catch((err) => next(err))
     })
+    this.router.delete('/', (req: Request, res: Response, next: NextFunction) => {
+      this.condominiumController.delete(req, res).catch((err) => next(err))
+    })
   }
 
   public getRouter(): Router {

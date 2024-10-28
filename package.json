@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/index.ts",
   "scripts": {
-    "test": "jest",
+    "test": "jest --watchAll",
     "dev": "nodemon --watch 'src/**' --ext 'ts,json' --exec 'ts-node -r tsconfig-paths/register ./src/index.ts' --ignore 'node_modules'",
     "format": "prettier --write .",
     "lint": "eslint . ",
@@ -32,7 +32,7 @@
     "typescript-eslint": "^8.6.0"
   },
   "dependencies": {
-    "@faker-js/faker": "^9.0.3",
+    "@faker-js/faker": "^9.1.0",
     "@types/supertest": "^6.0.2",
     "express": "^4.19.2",
     "inquirer": "^11.0.2",

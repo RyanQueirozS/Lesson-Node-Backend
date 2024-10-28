@@ -3,5 +3,4 @@ export interface ICondominiumRepositoryFilter {
   name?: string
   cnpj?: string
   address?: string
-  isActive?: boolean
 }

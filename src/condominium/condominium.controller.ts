@@ -5,14 +5,18 @@ import { IGetAllCondominiumsUseCase } from './interfaces/i-get-all-condominiums-
 import { IGetOneCondominiumUseCase } from './interfaces/i-get-one-condominium-use-case'
 import { IUpdateCondominiumUseCase } from './interfaces/i-update-condominium-use-case'
 import { ICondominiumRepositoryFilter } from './interfaces/i-condominium-repository-filter'
+import { IDeleteCondominiumUseCase } from './interfaces/i-delete-condominium.use-case'
 
 export class CondominiumController {
   constructor(
     private createCondominiumUseCase: ICreateCondominiumUseCase,
     private getAllCondominiumsUseCase: IGetAllCondominiumsUseCase,
     private getOneCondominiumUseCase: IGetOneCondominiumUseCase,
-    private updateCondominiumUseCase: IUpdateCondominiumUseCase
+    private updateCondominiumUseCase: IUpdateCondominiumUseCase,
+    private deleteCondominiumUseCase: IDeleteCondominiumUseCase
   ) {}
+
+  // TODO helper retorn json and status
 
   public async create(req: Request, res: Response) {
     const { body } = req
@@ -24,11 +28,13 @@ export class CondominiumController {
     const filter: ICondominiumRepositoryFilter = req.body
     res.status(200).json(await this.getAllCondominiumsUseCase.execute(filter))
   }
+
   public async getOne(req: Request, res: Response) {
     const filter: ICondominiumRepositoryFilter = req.body
     const resp = await this.getOneCondominiumUseCase.execute(filter)
     res.status(200).json(resp)
   }
+
   public async update(req: Request, res: Response) {
     const { id, cnpj, name, address, logoPath }: ICondominiumParams = req.body
 
@@ -40,6 +46,13 @@ export class CondominiumController {
       logoPath
     })
 
+    // TODO delete com await
     res.status(200).json(updatedCondominium)
+  }
+
+  public async delete(req: Request, res: Response) {
+    const filter: ICondominiumRepositoryFilter = req.body
+    const resp = await this.deleteCondominiumUseCase.execute(filter)
+    res.status(200).json({ data: resp })
   }
 }

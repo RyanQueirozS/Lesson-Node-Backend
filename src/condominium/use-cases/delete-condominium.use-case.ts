@@ -1,11 +1,11 @@
-import { IGetAllCondominiumsUseCase } from '../interfaces/i-get-all-condominiums-use-case'
 import { ICondominiumRepository } from '../interfaces/i-condominium-repository'
 import { ICondominiumRepositoryFilter } from '../interfaces/i-condominium-repository-filter'
+import { IDeleteCondominiumUseCase } from '../interfaces/i-delete-condominium.use-case'
 
-export class GetAllCondominiumsUseCase implements IGetAllCondominiumsUseCase {
+export class DeleteCondominiumUseCase implements IDeleteCondominiumUseCase {
   constructor(private condominiumRepository: ICondominiumRepository) {}
 
   async execute(filter: ICondominiumRepositoryFilter) {
-    return await this.condominiumRepository.getAll(filter)
+    return this.condominiumRepository.delete(filter)
   }
 }
