@@ -1,6 +1,6 @@
 import { condRouter } from '@src/condominium'
 import express, { Express } from 'express'
-import {errorHandler} from './error-handler'
+import { errorHandler } from './error-handler'
 
 const port = 8888
 

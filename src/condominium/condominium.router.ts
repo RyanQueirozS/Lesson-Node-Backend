@@ -17,6 +17,7 @@ export class CondominiumRouter {
     this.router.get('/', (req: Request, res: Response, next: NextFunction) => {
       this.condominiumController.getAll(req, res).catch((err) => next(err))
     })
+    //
     this.router.get('/:id', (req: Request, res: Response, next: NextFunction) => {
       this.condominiumController.getOne(req, res).catch((err) => next(err))
     })
@@ -24,6 +25,8 @@ export class CondominiumRouter {
     this.router.put('/', (req: Request, res: Response, next: NextFunction) => {
       this.condominiumController.update(req, res).catch((err) => next(err))
     })
+    // TODO
+    // 'delete:condominiums/:id'
     this.router.delete('/', (req: Request, res: Response, next: NextFunction) => {
       this.condominiumController.delete(req, res).catch((err) => next(err))
     })

@@ -16,12 +16,10 @@ export class CondominiumController {
     private deleteCondominiumUseCase: IDeleteCondominiumUseCase
   ) {}
 
-  // TODO helper retorn json and status
-
+  // TODO helper return json and status
   public async create(req: Request, res: Response) {
-    const { body } = req
-    const condominium = await this.createCondominiumUseCase.execute(body)
-    res.json({ data: condominium!.toDTO() })
+    const params = req.body
+    res.status(200).json(await this.createCondominiumUseCase.execute(params))
   }
 
   public async getAll(req: Request, res: Response) {
